@@ -1,5 +1,6 @@
 import pytest
 from app.main import get_human_age
+from typing import Any
 
 
 @pytest.mark.parametrize(
@@ -49,7 +50,11 @@ def test_get_human_age(cat_age: int, dog_age: int, expected_age: list) -> None:
         ),
     ]
 )
-def test_get_human_age_negative_inputs(cat_age: int, dog_age: int, expected_age: list) -> None:
+def test_get_human_age_negative_inputs(
+        cat_age: int,
+        dog_age: int,
+        expected_age: list
+) -> None:
     assert get_human_age(cat_age, dog_age) == expected_age
 
 
@@ -73,6 +78,6 @@ def test_get_human_age_negative_inputs(cat_age: int, dog_age: int, expected_age:
         ),
     ]
 )
-def test_get_human_age_invalid_types(cat_age, dog_age) -> None:
+def test_get_human_age_invalid_types(cat_age: Any, dog_age: Any) -> None:
     with pytest.raises(TypeError):
         get_human_age(cat_age, dog_age)
